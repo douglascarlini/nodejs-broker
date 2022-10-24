@@ -13,10 +13,8 @@ ws.init({
         if (!('token' in peer.data)) return;
         if (peer.data.token != AUTH_TOKEN) return;
 
-        const data = { from: peer.data.id, mode: 'status', data: 'online' };
-        const json = JSON.stringify(data);
-        ws.broadcast(peer.data.id, json);
         ws.add(peer.data.id, peer);
+        ws.online(peer.data.id);
     },
 
     onclose(peer) {
@@ -24,9 +22,7 @@ ws.init({
         if (!('data' in peer)) return;
         if (!('id' in peer.data)) return;
 
-        const data = { from: peer.data.id, mode: 'status', data: 'offline' };
-        const json = JSON.stringify(data);
-        ws.broadcast(peer.data.id, json);
+        ws.offline(peer.data.id);
         ws.del(peer.data.id);
     },
 

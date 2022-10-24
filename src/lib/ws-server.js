@@ -27,9 +27,12 @@ module.exports = {
 
     },
 
-    broadcast(from, data) {
+    offline(from) { this.broadcast(from, 'offline', 'status'); },
+    online(from) { this.broadcast(from, 'online', 'status'); },
+
+    broadcast(from, data, mode = 'broadcast') {
         var total = 0;
-        const json = JSON.stringify({ from, mode: 'broadcast', data });
+        const json = JSON.stringify({ from, mode, data });
         for (var id in this.peers) {
             if (id != from) {
                 this.peers[id].send(json);
