@@ -1,0 +1,12 @@
+{
+  "name": "ws-broker",
+  "version": "1.0.0",
+  "description": "Simple WS Broker",
+  "main": "src/index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^7.4.3"
+  }
+}
